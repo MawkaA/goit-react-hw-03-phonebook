@@ -9,7 +9,6 @@ import'./App.css';
 class App extends Component {
   state = {
   contacts: initialContacts,
-  name: '',
   filter:''
 };
 
@@ -49,14 +48,14 @@ return contacts.filter(contact =>
 };
 
 componentDidMount() {
-  const contacts = localStorage.getItem("contacts");
-  const parsedContacts = JSON.parse(contacts);
-  console.log(parsedContacts);
+  try {
+    const contacts = localStorage.getItem('contacts');
+    if (contacts) {
+      const parsedContacts = JSON.parse(contacts);
 
-if (parsedContacts) {
-  this.setState({ contacts:parsedContacts})
-}
-
+      this.setState({ contacts: parsedContacts });
+    }
+  } catch (e) {}
 }
 
 componentDidUpdate(prevProps, prevState) {
