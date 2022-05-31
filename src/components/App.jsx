@@ -48,14 +48,13 @@ return contacts.filter(contact =>
 };
 
 componentDidMount() {
-  try {
+  
     const contacts = localStorage.getItem('contacts');
-    if (contacts) {
-      const parsedContacts = JSON.parse(contacts);
-
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts?.length) {
       this.setState({ contacts: parsedContacts });
     }
-  } catch (e) {}
+  
 }
 
 componentDidUpdate(prevProps, prevState) {
